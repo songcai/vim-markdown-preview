@@ -20,6 +20,8 @@ Vim Markdown Preview
 
 Intro
 -----
+This is a fork of JamshedVesuna/vim-markdown-preview, with some bug-fixes and modifications for my personal use, created on June 6, 2020.
+
 A small Vim plugin for previewing markdown files in a browser.
 
 The aim of this plugin is to be light weight with minimal dependencies. Thus, there is *no* polling engine or webserver involved.
