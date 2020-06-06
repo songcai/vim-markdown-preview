@@ -2,6 +2,10 @@
 "                    Vim Markdown Preview
 "   git@github.com:JamshedVesuna/vim-markdown-preview.git
 "============================================================
+"
+"============================================================
+" Revised and bug-fixed by Song Cai on June 6, 2020
+"============================================================
 
 let g:vmp_script_path = resolve(expand('<sfile>:p:h'))
 
@@ -23,11 +27,12 @@ elseif has('unix')
 endif
 
 if !exists("g:vim_markdown_preview_browser")
-  if g:vmp_osname == 'mac'
-    let g:vim_markdown_preview_browser = 'Safari'
-  else
-    let g:vim_markdown_preview_browser = 'Google Chrome'
-  endif
+  "if g:vmp_osname == 'mac'
+    "let g:vim_markdown_preview_browser = 'Safari'
+  "else
+    "let g:vim_markdown_preview_browser = 'Google Chrome'
+  "endif
+  let g:vim_markdown_preview_browser = 'Firefox'
 endif
 
 if !exists("g:vim_markdown_preview_temp_file")
@@ -60,13 +65,16 @@ endif
 
 function! Vim_Markdown_Preview()
   let b:curr_file = expand('%:p')
+  "let b:curr_filename = expand('%')
+  let b:curr_filename_no_ext = expand('%:r')
 
   if g:vim_markdown_preview_github == 1
-    call system('grip "' . b:curr_file . '" --export /tmp/vim-markdown-preview.html --title vim-markdown-preview.html')
+    call system('grip "' . b:curr_file . '" --export /tmp/vim-markdown-preview.html --title "' . b:curr_filename_no_ext . '".html')
   elseif g:vim_markdown_preview_perl == 1
     call system('Markdown.pl "' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
   elseif g:vim_markdown_preview_pandoc == 1
-    call system('pandoc --standalone "' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
+    "call system('pandoc --standalone "' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
+    call system('pandoc --standalone "' . b:curr_file . '" -o /tmp/vim-markdown-preview.html  --metadata title="' . b:curr_filename_no_ext . '".html -V title=""')
   else
     call system('markdown "' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
   endif
@@ -114,13 +122,16 @@ endfunction
 "Renders html locally and displays images
 function! Vim_Markdown_Preview_Local()
   let b:curr_file = expand('%:p')
+  "let b:curr_filename = expand('%')
+  let b:curr_filename_no_ext = expand('%:r')
 
   if g:vim_markdown_preview_github == 1
-    call system('grip "' . b:curr_file . '" --export vim-markdown-preview.html --title vim-markdown-preview.html')
+    call system('grip "' . b:curr_file . '" --export vim-markdown-preview.html --title "' . b:curr_filename_no_ext . '".html')
   elseif g:vim_markdown_preview_perl == 1
-    call system('Markdown.pl "' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
+    call system('Markdown.pl "' . b:curr_file . '" > vim-markdown-preview.html')
   elseif g:vim_markdown_preview_pandoc == 1
-    call system('pandoc --standalone "' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
+    "call system('pandoc --standalone "' . b:curr_file . '" > vim-markdown-preview.html')
+    call system('pandoc --standalone "' . b:curr_file . '" -o vim-markdown-preview.html  --metadata title="' . b:curr_filename_no_ext . '".html -V title=""')
   else
     call system('markdown "' . b:curr_file . '" > vim-markdown-preview.html')
   endif
