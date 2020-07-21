@@ -63,6 +63,10 @@ if !exists("g:vim_markdown_preview_hotkey")
     let g:vim_markdown_preview_hotkey='<C-p>'
 endif
 
+if !exists("g:vim_markdown_preview_pandoc_math")
+    let g:vim_markdown_preview_pandoc_math="mathjax"
+endif
+
 function! Vim_Markdown_Preview()
   let b:curr_file = expand('%:p')
   "let b:curr_filename = expand('%')
@@ -74,7 +78,7 @@ function! Vim_Markdown_Preview()
     call system('Markdown.pl "' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
   elseif g:vim_markdown_preview_pandoc == 1
     "call system('pandoc --standalone "' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
-    call system('pandoc --standalone "' . b:curr_file . '" -o /tmp/vim-markdown-preview.html  --metadata title="' . b:curr_filename_no_ext . '".html -V title=""')
+    call system('pandoc -s -c https://people.math.carleton.ca/~scai/css/github-markdown.css -c https://people.math.carleton.ca/~scai/css/github-markdown-song.css --"' . g:vim_markdown_preview_pandoc_math . '" --metadata title="' . b:curr_filename_no_ext . '".html -V title="" "' . b:curr_file . '" -o /tmp/vim-markdown-preview.html')
   else
     call system('markdown "' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
   endif
@@ -131,7 +135,7 @@ function! Vim_Markdown_Preview_Local()
     call system('Markdown.pl "' . b:curr_file . '" > vim-markdown-preview.html')
   elseif g:vim_markdown_preview_pandoc == 1
     "call system('pandoc --standalone "' . b:curr_file . '" > vim-markdown-preview.html')
-    call system('pandoc --standalone "' . b:curr_file . '" -o vim-markdown-preview.html  --metadata title="' . b:curr_filename_no_ext . '".html -V title=""')
+    call system('pandoc -s -c https://people.math.carleton.ca/~scai/css/github-markdown.css -c https://people.math.carleton.ca/~scai/css/github-markdown-song.css --"' . g:vim_markdown_preview_pandoc_math . '" --metadata title="' . b:curr_filename_no_ext . '".html -V title="" "' . b:curr_file . '" -o vim-markdown-preview.html')
   else
     call system('markdown "' . b:curr_file . '" > vim-markdown-preview.html')
   endif
