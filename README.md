@@ -166,6 +166,18 @@ Example: Use Pandoc to render HTML.
 let vim_markdown_preview_pandoc=1
 ```
 
+<a name='pandoc_math'></a>
+### The `vim_markdown_preview_pandoc_math` option
+When using Pandoc for rendering HTML, one can use this option to choose how to render math in HTML from Pandoc's Markdown. The available options include "mathjax", "mathml", "webtex", "katex" and "gladtex", which are the same as the math rendering options of Pandoc.
+This option is added on 2020-07-20. It is available only in this fork.
+
+Default: "mathjax"
+
+Example: Use KaTeX to render math in HTML from Pandoc's Markdown.
+```vim
+let vim_markdown_preview_pandoc_math="katex"
+```
+
 <a name='xdg'></a>
 ### The `vim_markdown_preview_use_xdg_open` option
 
