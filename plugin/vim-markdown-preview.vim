@@ -27,12 +27,12 @@ elseif has('unix')
 endif
 
 if !exists("g:vim_markdown_preview_browser")
-  if g:vmp_osname == 'mac'
-    let g:vim_markdown_preview_browser = 'Safari'
-  else
-    let g:vim_markdown_preview_browser = 'Google Chrome'
-  endif
-  "let g:vim_markdown_preview_browser = 'Firefox'
+  "if g:vmp_osname == 'mac'
+    "let g:vim_markdown_preview_browser = 'Safari'
+  "else
+    "let g:vim_markdown_preview_browser = 'Google Chrome'
+  "endif
+  let g:vim_markdown_preview_browser = 'Firefox'
 endif
 
 if !exists("g:vim_markdown_preview_temp_file")
