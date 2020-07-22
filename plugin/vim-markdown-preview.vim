@@ -4,7 +4,8 @@
 "============================================================
 "
 "============================================================
-" Revised and bug-fixed by Song Cai on June 6, 2020
+" Forked by Song Cai on June 6, 2020
+" Revised by Song Cai on July 22, 2020
 "============================================================
 
 let g:vmp_script_path = resolve(expand('<sfile>:p:h'))
