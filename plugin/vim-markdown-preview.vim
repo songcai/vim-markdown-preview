@@ -64,7 +64,7 @@ if !exists("g:vim_markdown_preview_hotkey")
 endif
 
 if !exists("g:vim_markdown_preview_pandoc_math")
-    let g:vim_markdown_preview_pandoc_math="mathjax"
+    let g:vim_markdown_preview_pandoc_math='mathjax'
 endif
 
 function! Vim_Markdown_Preview()
@@ -104,7 +104,7 @@ function! Vim_Markdown_Preview()
   endif
 
   if g:vmp_osname == 'mac'
-    if g:vim_markdown_preview_browser == "Google Chrome"
+    if g:vim_markdown_preview_browser == 'Google Chrome'
       let b:vmp_preview_in_browser = system('osascript "' . g:vmp_search_script . '"')
       if b:vmp_preview_in_browser == 1
         call system('open -a "' . g:vim_markdown_preview_browser . '" -g /tmp/vim-markdown-preview.html')
@@ -161,7 +161,7 @@ function! Vim_Markdown_Preview_Local()
   endif
 
   if g:vmp_osname == 'mac'
-    if g:vim_markdown_preview_browser == "Google Chrome"
+    if g:vim_markdown_preview_browser == 'Google Chrome'
       let b:vmp_preview_in_browser = system('osascript "' . g:vmp_search_script . '"')
       if b:vmp_preview_in_browser == 1
         call system('open -a "' . g:vim_markdown_preview_browser . '" -g /tmp/vim-markdown-preview.html')
