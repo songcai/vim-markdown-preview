@@ -5,7 +5,7 @@
 "
 "============================================================
 " Forked by Song Cai on June 6, 2020
-" Revised by Song Cai on July 22, 2020
+" Last revised by Song Cai on July 26, 2020
 "============================================================
 
 let g:vmp_script_path = resolve(expand('<sfile>:p:h'))
@@ -77,8 +77,11 @@ function! Vim_Markdown_Preview()
   elseif g:vim_markdown_preview_perl == 1
     call system('Markdown.pl "' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
   elseif g:vim_markdown_preview_pandoc == 1
-    "call system('pandoc --standalone "' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
-    call system('pandoc -s -c https://people.math.carleton.ca/~scai/css/github-markdown.css -c https://people.math.carleton.ca/~scai/css/github-markdown-song.css --"' . g:vim_markdown_preview_pandoc_math . '" --metadata title="' . b:curr_filename_no_ext . '".html -V title="" "' . b:curr_file . '" -o /tmp/vim-markdown-preview.html')
+    if exists("g:vim_markdown_preview_mathjax_local_config")
+        call system('pandoc -s -c https://people.math.carleton.ca/~scai/css/github-markdown.css -c https://people.math.carleton.ca/~scai/css/github-markdown-song.css --mathjax= --include-in-header="' . g:vim_markdown_preview_mathjax_local_config . '" --metadata title="' . b:curr_filename_no_ext . '".html -V title="" "' . b:curr_file . '" -o /tmp/vim-markdown-preview.html')
+    else
+        call system('pandoc -s -c https://people.math.carleton.ca/~scai/css/github-markdown.css -c https://people.math.carleton.ca/~scai/css/github-markdown-song.css --"' . g:vim_markdown_preview_pandoc_math . '" --metadata title="' . b:curr_filename_no_ext . '".html -V title="" "' . b:curr_file . '" -o /tmp/vim-markdown-preview.html')
+    endif
   else
     call system('markdown "' . b:curr_file . '" > /tmp/vim-markdown-preview.html')
   endif
@@ -134,8 +137,11 @@ function! Vim_Markdown_Preview_Local()
   elseif g:vim_markdown_preview_perl == 1
     call system('Markdown.pl "' . b:curr_file . '" > vim-markdown-preview.html')
   elseif g:vim_markdown_preview_pandoc == 1
-    "call system('pandoc --standalone "' . b:curr_file . '" > vim-markdown-preview.html')
-    call system('pandoc -s -c https://people.math.carleton.ca/~scai/css/github-markdown.css -c https://people.math.carleton.ca/~scai/css/github-markdown-song.css --"' . g:vim_markdown_preview_pandoc_math . '" --metadata title="' . b:curr_filename_no_ext . '".html -V title="" "' . b:curr_file . '" -o vim-markdown-preview.html')
+    if exists("g:vim_markdown_preview_mathjax_local_config")
+        call system('pandoc -s -c https://people.math.carleton.ca/~scai/css/github-markdown.css -c https://people.math.carleton.ca/~scai/css/github-markdown-song.css --mathjax= --include-in-header="' . g:vim_markdown_preview_mathjax_local_config . '" --metadata title="' . b:curr_filename_no_ext . '".html -V title="" "' . b:curr_file . '" -o vim-markdown-preview.html')
+    else
+        call system('pandoc -s -c https://people.math.carleton.ca/~scai/css/github-markdown.css -c https://people.math.carleton.ca/~scai/css/github-markdown-song.css --"' . g:vim_markdown_preview_pandoc_math . '" --metadata title="' . b:curr_filename_no_ext . '".html -V title="" "' . b:curr_file . '" -o vim-markdown-preview.html')
+    endif
   else
     call system('markdown "' . b:curr_file . '" > vim-markdown-preview.html')
   endif
