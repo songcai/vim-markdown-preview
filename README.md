@@ -174,7 +174,20 @@ Default: "mathjax"
 
 Example: Use KaTeX to render math in HTML from Pandoc's Markdown.
 ```vim
-let vim_markdown_preview_pandoc_math="katex"
+let vim_markdown_preview_pandoc_math='katex'
+```
+
+<a name='mathjax_conf'></a>
+### The `vim_markdown_preview_mathjax_conf` option
+When using Pandoc with MathJax to render HTML, one can use the option 'vim_markdown_preview_mathjax_conf' to specify a MathJax local configuration file (either a local file or a URL, quoted in single quotes '') to configure MathJax. This option is added on 2020-07-26. It is available only in this fork.
+
+In effective only when: `vim_markdown_preview_pandoc=1`
+
+Implies: `vim_markdown_preview_pandoc_math='mathjax'`
+
+Example:
+```vim
+let vim_markdown_preview_mathjax_conf='~/.mathjax/mathjax_conf.txt'
 ```
 
 <a name='xdg'></a>
