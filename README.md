@@ -187,7 +187,7 @@ Implies: `vim_markdown_preview_pandoc_math='mathjax'`
 
 Example:
 ```vim
-let vim_markdown_preview_mathjax_conf='~/.mathjax/mathjax_conf.txt'
+let vim_markdown_preview_mathjax_conf='/Users/foo/.mathjax/mathjax_conf.txt'
 ```
 
 <a name='xdg'></a>
